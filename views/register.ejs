@@ -1,0 +1,60 @@
+<%include partials/head.ejs%>
+<%include partials/navbar.ejs%>
+<script>
+    $(function() {
+        $("form[name='registration']").validate({
+            rules: {
+                name: "required",
+                username: "required",
+                email: {
+                    required: true,
+                    email: true
+                },
+                password: {
+                    required: true,
+                    minlength: 5
+                }
+            },
+            messages: {
+                name: "Please enter a name!",
+                password: {
+                    required: "Please provide a password!",
+                    minlength: "Your password must be at least 5 characters long!"
+                },
+                email: "Please enter a valid email address"
+            },
+            submitHandler: function(form) {
+                form.submit();
+            }
+        });
+    })
+
+</script>
+<body>
+    <div class="login-form">
+        <h1>Register Form</h1>
+    <form method="post" name='registration' action="/register" validate>
+        <div class="form-field">
+            <label for="name">Name</label>
+            <input class="input" id="name" name="name" type="text" />
+        </div>
+        <div class="form-field">
+            <label for="username">Username</label>
+            <input class="input" id="user" name="username" type="text" value="" />
+        </div>
+        <div class="form-field">
+            <label for="email">Email</label>
+            <input class="input" id="email" name="email" type="email" value="" />
+        </div>
+        <div class="form-field">
+            <label for="password">Password</label>
+            <input class="input" id="password" name="password" type="password" value="" />
+        </div>
+
+        <div class="form-actions">
+            <button class="btn btn-success submitButton" type="submit">Register</button>
+        </div>
+    </form>
+    </div>
+</body>>
+

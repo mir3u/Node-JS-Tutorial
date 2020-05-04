@@ -1,0 +1,35 @@
+
+<nav class="navbar navbar-expand-sm  navbar-light bg-light justify-content-end fixed-top ">
+    <ul class="nav nav-pills">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <nav class="navbar navbar-light bg-light">
+            <a class="navbar-brand" href="/home">Node JS Tutorial</a>
+        </nav>
+
+        <%  if (user) { %>
+        <div class="collapse navbar-collapse justify-content-end" id="navbarsExampleDefault">
+            <ul class="navbar-nav m-auto active">
+                <li class="nav-item">
+                    <a class="nav-link" href="/home">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/logout">Logout</a>
+                </li>
+
+            </ul>
+
+        </div>
+    </ul>
+
+    <% } else { %>
+
+    <li class="nav-item"><a class="nav-link"  href="/register"> Register</a></li>
+    <li class="nav-item"><a class="nav-link " href="/login"> Login</a></li></ul>
+    </ul>
+    </ul>
+    <%}%>
+</nav>
+<br>
+<br>
