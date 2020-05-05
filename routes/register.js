@@ -1,6 +1,6 @@
 var express = require('express');
 const MD5 = require('md5');
-var router = express.Router();1
+var router = express.Router();
 const con = require('../Models/mysqlCon');
 const validator = require('express-validator');
 const toastr = require('express-toastr');

@@ -112,7 +112,7 @@ module.exports = {
     checkTableExists: (table, data) => {
         return con.query("SELECT EXISTS( " +
             "       SELECT * FROM information_schema.tables " +
-            "       WHERE table_schema = 'diploma_project' " +
+            "       WHERE table_schema = '"+database+"' " +
             "       AND table_name = '" + table + "' " +
             ") AS ME", function (err, result) {
             if (err) throw err;
