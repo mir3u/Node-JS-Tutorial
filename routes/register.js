@@ -36,7 +36,7 @@ router.post('/', function(req, res, next) {
                     }
                 })
                 con.checkRecordExists({
-                    table:"user", args: [{col: "email", value: email}]
+                    table:"user", args: [{col: "email", value: email}, {col:"user", value: username}]
                 },(result)=>{
                     console.log("me", result);
                     if(!result){

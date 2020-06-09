@@ -1,10 +1,20 @@
 body {
   padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font-family: 'Montserrat'!important;
+  font-size: 15px;
 }
 
 a {
-  color: #00B7FF;
+  color: #2c2f2f;
+}
+.navi{
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.19);
+  height: 50px;
+
+}
+.navbar-brand{
+  padding-top: 0!important;
+  padding-bottom: 0!important;
 }
 
 .indexClass,
@@ -12,9 +22,11 @@ a {
   width: 20%;
   margin: 0 auto;
   padding: 2%;
-  border: #535b63 solid 1px;
-  border-radius: 25px;
-  font-family: Tahoma, Geneva, sans-serif;
+  /*border: #535b63 solid 1px;*/
+  border-radius: 10px;
+  /*font-family: Tahoma, Geneva, sans-serif;*/
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.19);
+
 }
 .login-form h1 {
   text-align: center;
@@ -31,8 +43,23 @@ a {
   margin-bottom: 15px;
   box-sizing:border-box;
 }
+.registerButton{
+  margin-left: 23%;
+  margin-right: 27%;
+}
 .submitButton{
-  text-align: center;
-  margin-left: 32%;
+  /*text-align: center;*/
+  align-content: center;
+  margin-left: 34%;
   margin-right: 32%;
+}
+.editorDiv{
+  margin-left: 10%;
+  margin-right: 10%;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.19);
+
+}
+.successInner{
+  margin-left: 10%;
+  margin-right: 10%;
 }

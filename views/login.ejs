@@ -1,0 +1,84 @@
+<%include partials/head.ejs%>
+<%include partials/navbar.ejs%>
+
+
+<script>
+    $(function() {
+        $("form[name='login']").validate({
+            rules: {
+                username: "required",
+                password: {
+                    required: true,
+                    minlength: 5
+                }
+            },
+            messages: {
+                username: "Please enter a valid username!",
+                password: {
+                    required: "Please provide a password!",
+                    minlength: "Your password must be at least 5 characters long!"
+                },
+            },
+            submitHandler: function(form) {
+                login();
+            }
+        });
+    })
+
+    function login () {
+        $("#login").submit(function (e) {
+            e.preventDefault();
+            let data = {user: $("input#user").val(), password: $("input#password").val()};
+            $.ajax({
+                type: "POST",
+                url: '/login',
+                data: data,
+                success: function (dataServer) {
+                    console.log(dataServer)
+                    if (dataServer.success) {
+                        $('#success').css("visibility", "visible");
+                        $(location).attr('href', '/sandbox')
+                    }else{
+                        $('#error').css("visibility", "visible");
+                    }
+
+                },
+            });
+        })
+    }
+
+</script>
+<body>
+<div class="login-form">
+    <h1>Login Form</h1>
+    <form method="post" id="login" name='login'  validate>
+        <div class="form-field">
+            <label for="username">Username</label>
+            <input class="input" id="user" name="username" type="text" value="" />
+        </div>
+        <div class="form-field">
+            <label for="password">Password</label>
+            <input class="input" id="password" name="password" type="password" value="" />
+        </div>
+
+        <div class="form-actions">
+            <button class="btn btn-outline-success submitButton" type="submit">Login</button>
+        </div>
+    </form>
+
+    <div id="success" style="visibility: hidden">
+        <h5 style="color: #79fc05;">User successfully logged in!</h5>
+    </div>
+
+    <div id="error" style="visibility: hidden">
+        <h5 style="color: #ff353d">Incorrect user or password!</h5>
+    </div>
+
+    <h6> If your don't own an account please: </h6>
+    <a href="/register"><button class="btn btn-outline-primary registerButton"> Register now!</button></a>
+
+</div>
+
+
+</body>
+

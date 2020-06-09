@@ -127,13 +127,14 @@ module.exports = {
     checkRecordExists: (tabledata, data) =>
     {
         let query1 = "SELECT * FROM " + tabledata.table + " WHERE ";
-        for(let args in tabledata.args){
-            console.log(args);
-            if(args!=0){
-                query1 += "AND WHERE ";
+        for(let i in tabledata.args){
+            if(i!=0){
+                query1 += " AND ";
             }
-            query1 += tabledata.args[args].col + " = '" + tabledata.args[args].value+"'";
+            console.log(tabledata.args[i]);
+            query1 += tabledata.args[i].col + " = '" + tabledata.args[i].value+"'";
         }
+        console.log(query1);
         return con.query(query1, (err, result) => {
             if(result){
                 return data(true);

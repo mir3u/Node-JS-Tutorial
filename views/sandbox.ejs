@@ -1,0 +1,66 @@
+<!-- Create a simple CodeMirror instance -->
+<%include partials/head.ejs%>
+<%include partials/navbar.ejs%>
+
+<head>
+<script>
+    $(document).ready(function(){
+        var code = $(".editor")[0];
+        var editor = CodeMirror.fromTextArea(code, {
+            lineNumbers : true,
+            mode: "javascript",
+            theme: "dracula",
+            lineWrapping: false
+        });
+
+        console.log($(".editor").val());
+
+        $("#testCode").submit(function (e) {
+            let success = $('#successInner');
+            $('#errorInner').remove();
+            success.remove();
+            e.preventDefault();
+            let data = {code: $(".editor").val()};
+            $.ajax({
+                type: "POST",
+                url: '/sandbox/testCode',
+                data: data,
+                success: function (dataServer) {
+                    console.log(dataServer)
+                    if (dataServer.success) {
+                    $('#success').append("<div id=\"successInner\" style=\" margin-left: 10%; margin-right: 10%;\"> <h5 style=\"color: #6da521;\">The result of the code is: "+dataServer.result+"</h5></div>")
+
+                    }else{
+                        $('#error').append("<div id=\"errorInner\" style=\" margin-left: 10%; margin-right: 10%;\">\n" +
+                            "        <h5 style=\"color: #ff353d\">The code has an error!</h5>\n" +
+                            "    </div>");
+                    }
+
+                },
+            });
+        })
+    });
+
+</script>
+</head>
+
+<body>
+<form method="post" id="testCode" name='testCode'  validate>
+    <div class="editorDiv">
+        <label for="editor"></label><textarea class="editor"></textarea>
+    </div>
+
+    <div class="form-actions" style="margin-top: 2%; margin-left: 10.2%;">
+        <button class="btn btn-outline-success " type="submit">Submit Code</button>
+    </div>
+</form>
+
+<div id="success">
+<div id="successInner" style="visibility: hidden">
+    <h5 style="color: #79fc05;">The result of the code is: </h5>
+</div>
+    <div id="error">
+
+    </div>
+</div>
+</body>
