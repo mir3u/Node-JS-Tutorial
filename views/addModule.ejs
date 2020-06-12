@@ -1,0 +1,50 @@
+<%include partials/head.ejs%>
+<%include partials/navbar.ejs%>
+
+<body>
+<% if(!user) {%>
+    <script>$(location).attr('href', '/login')</script>
+<%}%>
+
+<div class="login-form">
+    <h1>Add Module</h1>
+    <form method="post" name='registration' action="/module/add">
+        <div class="form-field">
+            <label for="name">Name</label>
+            <input class="input" id="name" name="name" type="text" />
+        </div>
+        <div class="form-field">
+            <label for="description">Description</label>
+            <input class="form-control" id="description" name="description" type="textarea" value="" />
+        </div>
+        <div class="form-field">
+            <label for="difficulty">Difficulty</label>
+            <select class="form-control" name="difficulty" id="difficulty" >
+                <option value="beginner">Beginner</option>
+                <option value="intermediate">Intermediate</option>
+                <option value="advanced">Advanced</option>
+            </select>
+        </div>
+        <br>
+
+        <div class="form-field">
+            <label for="type">Type</label>
+            <select class="form-control" name="type" id="type" >
+                <option value="theory">Theory</option>
+                <option value="exercises">Exercises</option>
+            </select>
+        </div>
+        <br>
+        <div class="form-field">
+            <label for="author">Author</label>
+            <input class="input" id="author" name="author" type="text" value="" />
+        </div>
+
+        <center>
+            <div class="form-actions">
+                <button class="btn btn-outline-success submitButton" type="submit">Add Module</button>
+            </div>
+        </center>
+    </form>
+</div>
+</body>

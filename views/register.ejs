@@ -32,7 +32,7 @@
 </script>
 <body>
     <div class="login-form">
-        <h1>Register Form</h1>
+        <h1>Register</h1>
     <form method="post" name='registration' action="/register" validate>
         <div class="form-field">
             <label for="name">Name</label>
@@ -50,10 +50,15 @@
             <label for="password">Password</label>
             <input class="input" id="password" name="password" type="password" value="" />
         </div>
-
-        <div class="form-actions">
-            <button class="btn-outline-success submitButton" type="submit">Register</button>
+        <div class="form-field">
+            <label for="isAdmin">Admin</label>
+            <input class="input" id="isAdmin" name="isAdmin" type="checkbox" value="1" />
         </div>
+        <center>
+        <div class="form-actions">
+            <button class="btn btn-outline-success submitButton" type="submit">Register</button>
+        </div>
+        </center>
     </form>
     </div>
 </body>

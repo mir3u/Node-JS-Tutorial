@@ -1,0 +1,78 @@
+    <%include partials/head.ejs%>
+    <%include partials/navbar.ejs%>
+
+    <body>
+    <% if(!user) {%>
+        <script>$(location).attr('href', '/login')</script>
+    <%}%>
+<div class="mainMenu">
+<% if(modules.length != 0){%>
+    <div class="container-fluid">
+        <div class="row">
+        <%modules.forEach(module=>{%>
+
+
+            <div class="col-md-4">
+                <div class="card">
+                    <h5 class="card-header">
+                       <%= module.name%>
+                        <% if(user && user.isAdmin) {%>
+                        <a style="float: right;" href="/module/delete/<%=module.id%>" >x</a>
+                        <%}%>
+
+                    </h5>
+                    <div class="card-body">
+                        <p class="card-text">
+                           <strong>About the module: </strong> <%= module.description %>
+                        </p>
+                        <p class="card-text">
+                            <strong>The difficulty of this module is:</strong> <%= module.difficulty%> .
+                        </p>
+                        <p class="card-text">
+                            This is a <strong><%= module.type%></strong> module!
+                        </p>
+                    </div>
+                    <div class="card-footer">
+                        <%if(module.type == 'theory'){%>
+                            <% if(user && user.isAdmin) {%>
+
+                            <a href="/module/add/theory/<%=module.id%>"><button class="btn btn-outline-success">Add Theory</button> </a>
+                            <%}%>
+                            <a href="/module/list/<%=module.id%>"><button class="btn btn-outline-secondary">List Theory</button></a>
+                        <%}else{%>
+                                <% if(user && user.isAdmin) {%>
+                                <a href="/module/add/exercise/<%=module.id%>"><button class="btn btn-outline-success">Add Exercise</button> </a>
+                                <%}%>
+                            <a href="/module/list/<%=module.id%>"><button class="btn btn-outline-secondary">List Exercises</button></a>
+                        <%}%>
+                            <% if(user && user.isAdmin) {%>
+
+                            <a href="/module/edit/<%=module.id%>"><button class="btn btn-outline-primary">Edit Module</button> </a>
+                            <%}%>
+                    </div>
+                </div>
+<!--                <div class="progress">-->
+<!--                    <div class="progress-bar w-75">-->
+<!--                    </div>-->
+<!--                </div>-->
+            </div>
+<%})%>
+        </div>
+    </div>
+    <br>
+            <%}else {%>
+    <center>
+
+        <h4>There are no modules yet!</h4>
+
+    </center>
+    <%}%>
+    <center>
+        <% if(user && user.isAdmin) {%>
+
+             <a href="/module/add" ><button class="btn btn-primary">Add Module</button></a>
+        <%}%>
+
+    </center>
+</div>
+</body>

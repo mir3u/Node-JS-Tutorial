@@ -1,0 +1,55 @@
+<%include partials/head.ejs%>
+<%include partials/navbar.ejs%>
+
+<body>
+<script>
+    // $('.doneButton').on('click', ()=>{
+    //     $(location).attr('href', '/login')
+    // })
+
+</script>
+<% if(!user) {%>
+    <script>$(location).attr('href', '/login')</script>
+<%}%>
+
+<div class="login-form">
+    <h1>Add Exercise to <strong><%=module.name%> </strong></h1>
+    <form method="post" name='registration' action="/module/add/exercise">
+        <div class="form-field">
+            <label for="question">Question</label>
+            <input class="input" id="question" name="question" type="text" required/>
+        </div>
+        <input hidden id="id" name="id" value="<%=module.id%>">
+        <div class="form-field">
+            <label for="example">Code Example</label>
+            <input class="input" id="example" name="example" type="text" value="" />
+        </div>
+        <div class="form-field">
+            <label for="answer">Answer</label>
+            <input class="input" id="answer" name="answer" type="text" value="" />
+        </div>
+        <div class="form-field">
+            <label for="difficulty">Difficulty</label>
+            <select class="form-control" name="difficulty" id="difficulty" >
+                <option value="beginner">Beginner</option>
+                <option value="intermediate">Intermediate</option>
+                <option value="advanced">Advanced</option>
+            </select>
+        </div>
+        <br>
+
+        <br>
+
+        <center>
+            <div class="form-actions">
+                <button class="btn btn-outline-success submitButton" type="submit">Add Exercise</button>
+
+            </div>
+            <br>
+        </center>
+    </form>
+    <center>
+        <a href="/"> <button class="btn btn-outline-primary doneButton" >Done</button></a>
+    </center>
+</div>
+</body>

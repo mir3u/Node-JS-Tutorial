@@ -34,10 +34,9 @@
                 url: '/login',
                 data: data,
                 success: function (dataServer) {
-                    console.log(dataServer)
                     if (dataServer.success) {
                         $('#success').css("visibility", "visible");
-                        $(location).attr('href', '/sandbox')
+                        $(location).attr('href', '/')
                     }else{
                         $('#error').css("visibility", "visible");
                     }
@@ -50,7 +49,7 @@
 </script>
 <body>
 <div class="login-form">
-    <h1>Login Form</h1>
+    <h1>Login </h1>
     <form method="post" id="login" name='login'  validate>
         <div class="form-field">
             <label for="username">Username</label>
@@ -60,12 +59,14 @@
             <label for="password">Password</label>
             <input class="input" id="password" name="password" type="password" value="" />
         </div>
-
+        <center>
         <div class="form-actions">
-            <button class="btn btn-outline-success submitButton" type="submit">Login</button>
+            <button class="btn btn-outline-success" type="submit">Login</button>
         </div>
+        </center>
     </form>
 
+    <center>
     <div id="success" style="visibility: hidden">
         <h5 style="color: #79fc05;">User successfully logged in!</h5>
     </div>
@@ -73,9 +74,12 @@
     <div id="error" style="visibility: hidden">
         <h5 style="color: #ff353d">Incorrect user or password!</h5>
     </div>
+    </center>
 
+    <center>
     <h6> If your don't own an account please: </h6>
-    <a href="/register"><button class="btn btn-outline-primary registerButton"> Register now!</button></a>
+    <a href="/register"><button class="btn btn-outline-primary "> Register now!</button></a>
+    </center>
 
 </div>
 

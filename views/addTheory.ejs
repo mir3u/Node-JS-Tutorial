@@ -1,0 +1,45 @@
+<%include partials/head.ejs%>
+<%include partials/navbar.ejs%>
+
+<body>
+<% if(!user) {%>
+    <script>$(location).attr('href', '/login')</script>
+<%}%>
+
+<div class="login-form">
+    <h1>Add Theory to <%=module.name%></h1>
+    <form method="post" name='registration' action="/module/add">
+        <div class="form-field">
+            <label for="title">Title</label>
+            <input class="input" id="title" name="title" type="text" required/>
+        </div>
+        <div class="form-field">
+            <label for="question">Body</label>
+            <input class="input" id="question" name="question" type="text" required/>
+        </div>
+        <input hidden id="id" name="id" value="<%=module.id%>">
+        <div class="form-field">
+            <label for="example">Code Example</label>
+            <input class="input" id="example" name="example" type="text" value="" />
+        </div>
+        <div class="form-field">
+            <label for="difficulty">Difficulty</label>
+            <select class="form-control" name="difficulty" id="difficulty" >
+                <option value="beginner">Beginner</option>
+                <option value="intermediate">Intermediate</option>
+                <option value="advanced">Advanced</option>
+            </select>
+        </div>
+        <br>
+
+        <center>
+            <div class="form-actions">
+                <button class="btn btn-outline-success submitButton" type="submit">Add Theory</button>
+            </div>
+        </center>
+    </form>
+    <center>
+        <a href="/"> <button class="btn btn-outline-primary doneButton" >Done</button></a>
+    </center>
+</div>
+</body>
