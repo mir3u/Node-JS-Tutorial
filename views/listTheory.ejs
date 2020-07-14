@@ -1,0 +1,38 @@
+<%include partials/head.ejs%>
+<%include partials/navbar.ejs%>
+<body>
+<% if(!user) {%>
+    <script>$(location).attr('href', '/login')</script>
+<%}%>
+<div class="mainMenu">
+    <div class="container">
+        <b><h4><%=module.name%></h4></b>
+        <h4>Module difficulty: <strong><%=module.difficulty%></strong></h4>
+        <h5>Module progress 0%.</h5>
+        <% if(user && user.isAdmin) {%>
+        <a href="/module/add/theory/<%=module.id%>"><button style="float: right;" class="btn btn-outline-success" >Add Theory</button> </a>
+        <%}%>
+        <br><br>
+        <%if(theories.length !=0){%>
+            <ul class="list-group">
+                <% theories.forEach(theory=>{ %>
+
+                <li class="list-group-item"><%=theory.title%>
+                    <% if(user && user.isAdmin) {%>
+                    <a style="float: right; font-size: 150%;" href="/theory/delete/<%=theory.id%>" >x</a>
+                    <%}%>
+                    <a href="/theory/edit" style="float: right; margin-left: 0.2%;"><button class="btn btn-secondary"> Edit Theory</button></a>
+                    <a href="/theory/show/<%=theory.id%>" style="float: right;"><button class="btn btn-primary">View and Read</button></a>
+
+                </li>
+                <%})%>
+            </ul>
+        <%}else{%>
+            <h5>There are no Exercises in this module</h5>
+            <% if(user && user.isAdmin) {%>
+            <a href="/module/add/exercise/<%=module.id%>"><button class="btn btn-outline-success" >Add Exercise</button> </a>
+            <%}%>
+        <%}%>
+    </div>
+</div>
+</body>

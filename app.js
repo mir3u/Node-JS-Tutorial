@@ -15,6 +15,9 @@ let logoutRouter = require('./routes/logout')
 let sandboxRouter = require('./routes/sandbox')
 let mainMenuRouter = require('./routes/mainMenu')
 let moduleRouter = require('./routes/module')
+let exerciseRouter = require('./routes/exercises');
+let theoryRouter = require('./routes/theory');
+let profileRouter = require('./routes/profile');
 
 var session = require('express-session');
 var app = express();
@@ -27,6 +30,8 @@ app.use(session({
 }));
 app.use(function(req, res, next) {
   res.locals.user = req.session.user;
+  res.locals.exTest = req.session.exTest;
+  res.locals.testOverall =req.session.testOverall;
   next();
 });
 app.use(bodyParser.urlencoded({extended : true}));
@@ -49,6 +54,10 @@ app.use('/login', loginRouter);
 app.use('/logout', logoutRouter);
 app.use('/sandbox', sandboxRouter);
 app.use('/module', moduleRouter);
+app.use('/exercise', exerciseRouter);
+app.use('/theory', theoryRouter);
+app.use('/profile', profileRouter);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

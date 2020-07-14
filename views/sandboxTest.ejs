@@ -1,0 +1,54 @@
+<!-- Create a simple CodeMirror instance -->
+<%include partials/head.ejs%>
+<%include partials/navbar.ejs%>
+
+<head>
+    <script>
+        $(document).ready(function(){
+            var code = $(".editor")[0];
+            var editor = CodeMirror.fromTextArea(code, {
+                lineNumbers : true,
+                mode: "javascript",
+                theme: "dracula",
+                lineWrapping: false
+            });
+
+        });
+
+    </script>
+</head>
+
+<body>
+<% if(!user) {%>
+    <script>$(location).attr('href', '/login')</script>
+<%}%>
+<h4 style="margin-left: 10%;margin-right: 10%;"><%=exercise.question%>
+    <% if(exTest.length != 0){%>
+         <a href="/sandbox/test/next/"><button class="btn btn-outline-primary" style="float: right; margin-right: 5%">Next Exercise</button></a>
+    <%}%>
+</h4>
+
+<form method="post" id="testCode" action="/sandbox/test/submit" name='testCode'  validate>
+
+    <div class="editorDiv">
+        <label for="editor"></label><textarea name="editor" id="editor" class="editor"><%=exercise.codeExample%></textarea>
+    </div>
+    <input hidden id="id" name="id" value="<%=exercise.id%>">
+
+    <div class="form-actions" style="margin-top: 2%; margin-left: 10.2%;">
+        <button class="btn btn-outline-success" type="submit">Submit Code</button>
+
+    </div>
+</form>
+
+
+
+<div id="success">
+    <div id="successInner" style="visibility: hidden">
+        <h5 style="color: #79fc05;">The result of the code is: </h5>
+    </div>
+    <div id="error">
+
+    </div>
+</div>
+</body>

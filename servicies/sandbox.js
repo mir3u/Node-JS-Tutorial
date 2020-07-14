@@ -17,8 +17,11 @@ const vm = new NodeVM({
 const sandboxModule = module.exports = {
     runJsFunction: (code, variableRun)=>{
         try {
-            let a = vm.run(code, __filename);
-            let m = a(10);
+            let beforeFun = 'module.exports =  ';
+            let codeGood = beforeFun+code;
+            console.log(codeGood);
+            let c = vm.run(codeGood, __filename);
+            let m = c();
             return m;
         }catch (e) {
             console.log(e);

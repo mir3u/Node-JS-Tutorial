@@ -1,0 +1,42 @@
+<%include partials/head.ejs%>
+<%include partials/navbar.ejs%>
+
+<body>
+<% if(!user) {%>
+    <script>$(location).attr('href', '/login')</script>
+<%}%>
+<script>
+    $(function() {
+        $("form[name='registration']").validate({
+            rules: {
+                noQs: {
+                    required: true,
+                    max:<%= noOfQuestions%>,
+                },
+            },
+            messages: {
+               noQs: "Maximum limit of questions is exceeded!"
+            },
+            submitHandler: function(form) {
+                form.submit();
+            }
+        });
+    })
+</script>
+<div class="login-form">
+    <h1>Add Test to <%=module.name%></h1>
+    <form method="post" name='registration' action="/module/add/test/">
+        <div class="form-field">
+            <label for="noQs">No. Of Questions</label>
+            <input class="input" id="noQs" name="noQs" type="text" required value="<%= noOfQuestions%>"/>
+        </div>
+        <input hidden id="id" name="id" value="<%=module.id%>">
+        <br>
+        <center>
+            <div class="form-actions">
+                <button class="btn btn-outline-success submitButton" type="submit">Add Test</button>
+            </div>
+        </center>
+    </form>
+</div>
+</body>

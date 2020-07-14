@@ -9,5 +9,8 @@ module.exports = (sequelize, type) => {
         codeExample: type.STRING,
         difficulty: type.STRING,
         answer: type.STRING,
+        matchAnswer:{
+            type: type.BOOLEAN,
+            defaultValue: false}
     })
 }

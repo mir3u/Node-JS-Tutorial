@@ -1,0 +1,63 @@
+<!-- Create a simple CodeMirror instance -->
+<%include partials/head.ejs%>
+<%include partials/navbar.ejs%>
+
+<head>
+    <script>
+        $(document).ready(function(){
+            var code = $(".editor")[0];
+            var editor = CodeMirror.fromTextArea(code, {
+                lineNumbers : true,
+                mode: "javascript",
+                theme: "dracula",
+                lineWrapping: false
+            });
+
+            console.log($(".editor").val());
+
+            $("#testCode").submit(function (e) {
+                let success = $('#successInner');
+                $('#errorInner').remove();
+                success.remove();
+                e.preventDefault();
+                let data = {code: $(".editor").val()};
+                $.ajax({
+                    type: "POST",
+                    url: '/sandbox/testCode',
+                    data: data,
+                    success: function (dataServer) {
+                        console.log(dataServer)
+                        if (dataServer.success) {
+                            $('#success').append("<div id=\"successInner\" style=\" margin-left: 10%; margin-right: 10%;\"> <h5 style=\"color: #6da521;\">The result of the code is: "+dataServer.result+"</h5><h5 style=\"color: #6da521;\">The code is correct!</h5></div>")
+
+                        }else{
+                            $('#error').append("<div id=\"errorInner\" style=\" margin-left: 10%; margin-right: 10%;\">\n" +
+                                "        <h5 style=\"color: #ff353d\">The code has an error!</h5>\n" +
+                                "    </div>");
+                        }
+
+                    },
+                });
+            })
+        });
+
+    </script>
+</head>
+
+<body>
+<% if(!user) {%>
+    <script>$(location).attr('href', '/login')</script>
+<%}%>
+<h4 style="margin-left: 10%;margin-right: 20%;"><%=theory.title%></h4>
+<br>
+<h5 style="margin-left: 10%;margin-right: 20%;"><%=theory.question%></h5>
+    <%if(theory.example.length != 0){%>
+    <div class="editorDiv">
+        <label for="editor"></label><textarea class="editor"><%=theory.example%></textarea>
+    </div>
+    <%}%>
+
+        <button class="btn btn-outline-primary" style="float: right; margin-right: 12%">Next Theory</button>
+
+
+</body>

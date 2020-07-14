@@ -1,0 +1,23 @@
+{
+  "development": {
+    "username": "root",
+    "password": "miru",
+    "database": "diploma_project",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  },
+  "test": {
+    "username": "root",
+    "password": "miru",
+    "database": "diploma_project",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  },
+  "production": {
+    "username": "root",
+    "password": "miru",
+    "database": "diploma_project",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  }
+}

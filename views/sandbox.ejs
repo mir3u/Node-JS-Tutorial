@@ -20,16 +20,20 @@
             $('#errorInner').remove();
             success.remove();
             e.preventDefault();
-            let data = {code: $(".editor").val()};
+            let data = {code: $(".editor").val(), id: $("#id").val()} ;
             $.ajax({
                 type: "POST",
                 url: '/sandbox/testCode',
                 data: data,
                 success: function (dataServer) {
                     console.log(dataServer)
-                    if (dataServer.success) {
-                    $('#success').append("<div id=\"successInner\" style=\" margin-left: 10%; margin-right: 10%;\"> <h5 style=\"color: #6da521;\">The result of the code is: "+dataServer.result+"</h5></div>")
+                    if (dataServer.success && dataServer.success == 'the code ran') {
+                    $('#success').append("<div id=\"successInner\" style=\" margin-left: 10%; margin-right: 10%;\"> <h5 style=\"color: #6da521;\">The result of the code is: "+dataServer.result+"</h5><h5 style=\"color: #6da521;\">The code is correct!</h5></div>")
 
+                    }else if(dataServer.success && dataServer.success == 'results no match'){
+                        $('#error').append("<div id=\"errorInner\" style=\" margin-left: 10%; margin-right: 10%;\">\n" +
+                            "        <h5 style=\"color: #ff353d\">The result is not correct. Result: "+dataServer.result+"</h5>\n" +
+                            "    </div>");
                     }else{
                         $('#error').append("<div id=\"errorInner\" style=\" margin-left: 10%; margin-right: 10%;\">\n" +
                             "        <h5 style=\"color: #ff353d\">The code has an error!</h5>\n" +
@@ -48,15 +52,24 @@
 <% if(!user) {%>
     <script>$(location).attr('href', '/login')</script>
 <%}%>
+<h4 style="margin-left: 10%;margin-right: 10%;"><%=exercise.question%>
+    <a href="/exercise/next/solve"><button class="btn btn-outline-primary" style="float: right; margin-right: 5%">Next Exercise</button></a>
+</h4>
+
 <form method="post" id="testCode" name='testCode'  validate>
+
     <div class="editorDiv">
-        <label for="editor"></label><textarea class="editor"></textarea>
+        <label for="editor"></label><textarea class="editor"><%=exercise.codeExample%></textarea>
     </div>
+    <input hidden id="id" name="id" value="<%=exercise.id%>">
 
     <div class="form-actions" style="margin-top: 2%; margin-left: 10.2%;">
-        <button class="btn btn-outline-success " type="submit">Submit Code</button>
+        <button class="btn btn-outline-success" type="submit">Submit Code</button>
+
     </div>
 </form>
+
+
 
 <div id="success">
 <div id="successInner" style="visibility: hidden">

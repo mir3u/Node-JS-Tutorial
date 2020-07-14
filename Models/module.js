@@ -10,6 +10,9 @@ module.exports = (sequelize, type) => {
         difficulty: type.STRING,
         author: type.STRING,
         type: type.STRING,
-        noOfQuestions: type.INTEGER
+        noOfQuestions: type.INTEGER,
+        hasTest:{
+            type: type.BOOLEAN,
+            defaultValue: false}
     })
 }
